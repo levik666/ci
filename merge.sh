@@ -5,6 +5,15 @@
 # Then reference then:
 echo "version is $version and prevTag is $prevTag and nextTag is $nextTag-SNAPSHOT"
 
+function string_replace {
+    echo "${1/\-/$2}"
+}
+
+$version=$(string_replace "$version" "SNAPSHOT")
+
+if [ $version != $prevTag ]; then
+    echo "version is $version   should be equels with prevTag is $prevTag"
+fi
 
 ls -la && echo 'checkout release-candidate' && git checkout release-candidate/0.0.1 -f && git fetch && git pull origin release-candidate/0.0.1 -f &&
 echo 'switch to master' && git checkout master -f && git fetch && git pull origin master -f && 
