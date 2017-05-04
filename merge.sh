@@ -13,6 +13,7 @@ $version=$(string_replace "$version" "SNAPSHOT")
 
 if [ $version != $prevTag ]; then
     echo "version is $version   should be equels with prevTag is $prevTag"
+    return -1;
 fi
 
 ls -la && echo 'checkout release-candidate' && git checkout release-candidate/0.0.1 -f && git fetch && git pull origin release-candidate/0.0.1 -f &&
